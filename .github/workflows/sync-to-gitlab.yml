@@ -19,5 +19,4 @@ jobs:
 
       - name: Push changes to GitLab
         run: |
-          git push gitlab HEAD:main
-
+            git push gitlab HEAD:main --force
