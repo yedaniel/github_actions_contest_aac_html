@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0 # Fetch all history for all tags and branches
 
       - name: Add GitLab remote
-        run: git remote add gitlab https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/YeDaniel/github_actions_contest_aac_html.git
+        run: git remote add gitlab https://oauth2:${{ secrets.GITLAB_ACCESS_TOKEN }}@gitlab.com/YeDaniel/github_actions_contest_aac_html.git
 
       - name: Push changes to GitLab
         run: |
