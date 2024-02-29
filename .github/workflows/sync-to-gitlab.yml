@@ -6,15 +6,18 @@ on:
       - main
 
 jobs:
-  sync:
+  sync-to-gitlab:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout source code
-      uses: actions/checkout@v2
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all history for all tags and branches
 
-    - name: Push to GitLab
-      env:
-        GITLAB_TOKEN: ${{ secrets.GITLAB_ACCESS_TOKEN }}
-      run: |
-        git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/YeDaniel/github_actions_contest_aac_html.git
-        git push --force gitlab HEAD:main
+      - name: Add GitLab remote
+        run: git remote add gitlab https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/YeDaniel/github_actions_contest_aac_html.git
+
+      - name: Push changes to GitLab
+        run: |
+          git push gitlab HEAD:main
+
