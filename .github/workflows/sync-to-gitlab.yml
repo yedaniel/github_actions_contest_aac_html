@@ -3,7 +3,7 @@ name: Sync to GitLab
 on:
   push:
     branches:
-      - main # Adjust if you use a different branch
+      - main
 
 jobs:
   sync:
@@ -16,5 +16,5 @@ jobs:
       env:
         GITLAB_TOKEN: ${{ secrets.GITLAB_ACCESS_TOKEN }}
       run: |
-        git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/yourusername/yourrepository.git
-        git push --force gitlab HEAD:main # Ensure branch names match your setup
+        git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/YeDaniel/github_actions_contest_aac_html.git
+        git push --force gitlab HEAD:main
