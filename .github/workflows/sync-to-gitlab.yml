@@ -1,0 +1,20 @@
+name: Sync to GitLab
+
+on:
+  push:
+    branches:
+      - main # Adjust if you use a different branch
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Push to GitLab
+      env:
+        GITLAB_TOKEN: ${{ secrets.GITLAB_ACCESS_TOKEN }}
+      run: |
+        git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/yourusername/yourrepository.git
+        git push --force gitlab HEAD:main # Ensure branch names match your setup
